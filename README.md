@@ -110,36 +110,11 @@ server {
     index index.html;
 }
 ```
-
-#### Web1 (Sitio Público)
-
-Archivo: `/etc/nginx/sites-available/web1`
-
-```nginx
-server {
-    listen 80;
-    server_name www.web1.org;
-    root /var/www/web1;
-    index index.html;
-}
-```
-
-#### Web2 (Sitio Interno)
-
-Archivo: `/etc/nginx/sites-available/web2`
-
-```nginx
-server {
-    listen 80;
-    server_name www.web2.org;
-    root /var/www/web2;
-    index index.html;
-}
-```
 ### D) Control de Acceso por Red
 
 Para `www.web2.org` solo accesible desde la red interna:
-
+* Configuración: [web2](./conf/web2)
+* Código:
 ```nginx
 location / {
     allow 192.168.3.0/24;
@@ -152,7 +127,7 @@ location / {
 
 ### E) Autenticación y Autorización
 
-Carpeta [privado](./html/web1/privado) en web1 pide contraseña **solo si vienes de fuera**:
+Carpeta [privado](./html/web1/privado) en web1 pide contraseña **solo si vienes de fuera**:\
 Configuración en [web1](./conf/web1):
 ```nginx
 location /privado {
@@ -173,8 +148,12 @@ Configuración en [web1](./conf/web1):
 server {
     listen 443 ssl;
     server_name www.web1.org;
+
     ssl_certificate /etc/ssl/certs/web1.crt;
     ssl_certificate_key /etc/ssl/private/web1.key;
+    
+    root /var/www/web1;
+    index index.html;
 }
 ```
 ### Automatización
