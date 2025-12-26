@@ -1,0 +1,16 @@
+server {
+    listen 80;
+    server_name www.web1.org;
+    root /var/www/web1;
+    index index.html;
+    
+    location /privado {
+    satisfy any;
+    allow 192.168.3.0/24;
+    deny all;
+
+    auth_basic "Zona privada";
+    auth_basic_user_file /etc/nginx/.htpasswd;
+    }
+
+}
