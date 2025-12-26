@@ -69,25 +69,47 @@ systemctl status nginx
 
 ### A) Versión y Ficheros
 
-- **Versión instalada:** `nginx/1.18.0 (Ubuntu)`  
-- **Fichero principal:** `/etc/nginx/nginx.conf`  
-- **Directorio de sitios:** `/etc/nginx/sites-available/`  
+* **Versión instalada:** `nginx version: nginx/1.18.0 (Ubuntu)`
+* **Ficheros de configuración:** Se encuentran en la carpeta [conf](./conf).
+* **Directorio web:** Las páginas HTML están en [html](./html). 
 
 ---
 
 ### B) Página Web por Defecto
 
-Se personalizó la página de **localhost** para mostrar la bienvenida y el nombre de la autora.
+Se ha personalizado la página que responde a `http://localhost`.
+* **Archivo de configuración:** [000-default.conf](./conf/000-default.conf)
+* **HTML:** [index.html](./html/default/index.html)
+* **Contenido:** Se ha modificado el HTML para mostrar "Bienvenidos a Mi servidor web" y el nombre de la autora.
 
 ---
 
 ### C) Virtual Hosting
 
-Configuración de nombres en clientes (`/etc/hosts`):
+Se han configurado dos dominios compartiendo la misma IP.
 
-192.168.3.10 - www.web1.org
-
-192.168.3.10 - www.web2.org
+**1. Sitio Público ([Ver HTML](./html/web1))**
+* Configuración: [web1](./conf/web1)
+* Código:
+```nginx
+server {
+    listen 80;
+    server_name www.web1.org;
+    root /var/www/web1;
+    index index.html;
+}
+```
+**2. Sitio Interno ([Ver HTML](./html/web2))**
+* Configuración: [web2](./conf/web2)
+* Código:
+```nginx
+server {
+    listen 80;
+    server_name www.web2.org;
+    root /var/www/web2;
+    index index.html;
+}
+```
 
 #### Web1 (Sitio Público)
 
@@ -130,8 +152,8 @@ location / {
 
 ### E) Autenticación y Autorización
 
-Carpeta `/privado` en web1 pide contraseña **solo si vienes de fuera**:
-
+Carpeta [privado](./html/web1/privado) en web1 pide contraseña **solo si vienes de fuera**:
+Configuración en [web1](./conf/web1):
 ```nginx
 location /privado {
     satisfy any;
@@ -144,22 +166,25 @@ location /privado {
 - Usuario generado: `lucia`
 ### F) Seguridad SSL/TLS
 
-Acceso seguro HTTPS para `www.web1.org` con certificado generado mediante OpenSSL:
+Se ha habilitado HTTPS usando certificados ubicados en la carpeta [ssl](./ssl).
 
+Configuración en [web1](./conf/web1):
 ```nginx
 server {
     listen 443 ssl;
     server_name www.web1.org;
-
     ssl_certificate /etc/ssl/certs/web1.crt;
     ssl_certificate_key /etc/ssl/private/web1.key;
-
-    root /var/www/web1;
-    index index.html;
 }
 ```
+### Automatización
+
+Se incluye un script de instalación automática:
+* **Script:** [install_nginx.sh](./scripts/install_nginx.sh)
+
 ## Referencias
 
 - [Documentación oficial de Nginx](https://nginx.org/en/docs/)  
 - [DigitalOcean: Tutorial de instalación Nginx en Ubuntu 22.04](https://www.digitalocean.com/community/tutorials)  
 - [Documentación de OpenSSL](https://www.openssl.org/docs/)  
+
