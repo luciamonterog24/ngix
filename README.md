@@ -127,7 +127,7 @@ location / {
 
 ### E) Autenticación y Autorización
 
-Carpeta [privado](./html/web1/privado) en web1 pide contraseña **solo si vienes de fuera**:
+Carpeta [privado](./html/web1/privado) en web1 pide contraseña **solo si vienes de fuera**:\
 Configuración en [web1](./conf/web1):
 ```nginx
 location /privado {
