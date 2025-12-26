@@ -14,3 +14,14 @@ server {
     }
 
 }
+
+server {
+    listen 443 ssl;
+    server_name www.web1.org;
+
+    ssl_certificate /etc/ssl/certs/web1.crt;
+    ssl_certificate_key /etc/ssl/private/web1.key;
+
+    root /var/www/web1;
+    index index.html;
+}
