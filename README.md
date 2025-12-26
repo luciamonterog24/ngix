@@ -58,7 +58,7 @@ Instalación realizada en **Ubuntu 22.04**:
 sudo apt update
 sudo apt install nginx apache2-utils -y
 ```
-## Verificación del Servicio
+### Verificación del Servicio
 
 Verificar que Nginx está activo:
 
@@ -127,7 +127,7 @@ location / {
 
 ### E) Autenticación y Autorización
 
-Carpeta [privado](./html/web1/privado) en web1 pide contraseña **solo si vienes de fuera**:\
+Carpeta [privado](./html/web1/privado) en web1 pide contraseña **solo si vienes de fuera**:
 Configuración en [web1](./conf/web1):
 ```nginx
 location /privado {
@@ -161,7 +161,7 @@ server {
 Se incluye un script de instalación automática:
 * **Script:** [install_nginx.sh](./scripts/install_nginx.sh)
 
-## 6. Referencias
+## Referencias
 
 ### Documentación Técnica de Nginx
 * **Módulo Core (Directivas básicas):** Explicación oficial de directivas clave usadas como `root`, `index`, `server` y `location`.
