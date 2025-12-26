@@ -161,9 +161,22 @@ server {
 Se incluye un script de instalación automática:
 * **Script:** [install_nginx.sh](./scripts/install_nginx.sh)
 
-## Referencias
+## 6. Referencias
 
-- [Documentación oficial de Nginx](https://nginx.org/en/docs/)  
-- [DigitalOcean: Tutorial de instalación Nginx en Ubuntu 22.04](https://www.digitalocean.com/community/tutorials)  
-- [Documentación de OpenSSL](https://www.openssl.org/docs/)  
+### Documentación Técnica de Nginx
+* **Módulo Core (Directivas básicas):** Explicación oficial de directivas clave usadas como `root`, `index`, `server` y `location`.
+    * [http://nginx.org/en/docs/http/ngx_http_core_module.html](http://nginx.org/en/docs/http/ngx_http_core_module.html)
+* **Procesamiento de peticiones (Virtual Hosting):** Detalle técnico de cómo Nginx decide qué bloque `server` usar basándose en el encabezado `Host`.
+    * [http://nginx.org/en/docs/http/request_processing.html](http://nginx.org/en/docs/http/request_processing.html)
+* **Restricción de acceso (Módulo Access):** Documentación del módulo `ngx_http_access_module` usado para las reglas `allow` y `deny`.
+    * [http://nginx.org/en/docs/http/ngx_http_access_module.html](http://nginx.org/en/docs/http/ngx_http_access_module.html)
+* **Autenticación Básica:** Documentación del módulo `ngx_http_auth_basic_module` para proteger directorios con contraseña.
+    * [http://nginx.org/en/docs/http/ngx_http_auth_basic_module.html](http://nginx.org/en/docs/http/ngx_http_auth_basic_module.html)
 
+### Guías de Instalación y Sistema
+* **Instalación en Ubuntu 22.04 (DigitalOcean):** Guía específica paso a paso para la versión del sistema operativo utilizada en el proyecto.
+    * [https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-22-04](https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-22-04)
+
+### Seguridad y SSL/TLS
+* **Manual del comando OpenSSL `req`:** Documentación oficial (man page) del comando utilizado para generar la solicitud de firma de certificado y la clave privada.
+    * [https://www.openssl.org/docs/man1.1.1/man1/req.html](https://www.openssl.org/docs/man1.1.1/man1/req.html)
