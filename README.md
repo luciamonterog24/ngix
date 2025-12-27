@@ -2,7 +2,7 @@
 
 **Autora:** Lucía  
 **Asignatura:** Servicios de Red e Internet  
-**Curso:** 2024/2025  
+**Curso:** 2025/2026  
 
 ---
 
